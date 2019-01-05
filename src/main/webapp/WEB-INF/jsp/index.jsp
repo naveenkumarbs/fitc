@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <html lang="en">
+<jsp:include page="common/menu.jsp" /> 
 <body>
     <div>
         <div>

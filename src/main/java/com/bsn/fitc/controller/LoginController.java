@@ -2,11 +2,13 @@ package com.bsn.fitc.controller;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bsn.fitc.service.impl.LoginServiceImpl;
@@ -25,6 +27,13 @@ public class LoginController {
 		mv.addObject("message", loginService.validateUser(request));
 		mv.addObject("userName", request.getParameter("userName"));
 		return mv;
+    }
+    
+    @RequestMapping("logout")
+    public ModelAndView logout(SessionStatus status,HttpSession session) {
+    	status.setComplete();
+    	ModelAndView mv = new ModelAndView("index");
+    	return mv;
     }
      
     @RequestMapping("/next1")
