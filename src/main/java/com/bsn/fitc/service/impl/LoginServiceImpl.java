@@ -1,5 +1,6 @@
 package com.bsn.fitc.service.impl;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,9 +24,22 @@ public class LoginServiceImpl implements LoginService{
 	}
 
 	@Override
-	public String getUserRole(String user) {
+	public String getUserRole(String user) throws SQLException{
+		return loginDao.getUserRole(user);
+	}
+
+	@Override
+	public boolean userLogin(HttpServletRequest request) throws SQLException {
+		String params[] = {request.getParameter("userName"),request.getParameter("password")};
+		
+		return loginDao.userLogin(params);
 		// TODO Auto-generated method stub
-		return null;
+		
+	}
+
+	@Override
+	public List<String> getUserValidated(HttpServletRequest request) {
+		return loginDao.getUserValidated(request.getParameter("userName"));
 	}
 
 }

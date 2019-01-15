@@ -3,6 +3,8 @@
 <html>
 <head>
 <link href="css/style.css" rel="stylesheet" type="text/css" />
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="js/fitc.js"></script>
 </head>
 <body>
 	<!-- Navigation -->
@@ -31,13 +33,13 @@
 				<li><a href="#">Manage</a></li>
 			</ul></li>
 
-		<li><a href="#">${userName}'s Profile</a>
+		<li><a href="#">${userName} Profile</a>
 			<ul>
 				<c:choose>
 
 					<c:when test="${empty userName}">
-						<li><a href="login?userName=Naveen">Login</a></li>
-						<li><a href="#">Register</a></li>
+						<li><a href="loginForm" onclick="#">Login</a></li>
+						<li><a href="#" onclick="showRegistrationDiv()">Register</a></li>
 					</c:when>
 
 					<c:otherwise>
@@ -49,5 +51,8 @@
 			</ul></li>
 		<li><a href="#">Help</a></li>
 	</ul>
+	
+	<br/> 
+	<br/>
 </body>
 </html>
