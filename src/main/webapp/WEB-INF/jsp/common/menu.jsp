@@ -10,46 +10,47 @@
 	<!-- Navigation -->
 	<ul id="nav">
 		<li><a href="/">Home</a></li>
-		<li><a href="#">Categories</a>
-			<ul>
-				<li><a href="#">All</a>
-					<ul>
-						<li><a href="#">Category 1</a>
-							<ul class="droprightMenu">
-								<li><a href="#">Category 1.2</a>
-									<ul>
-										<li><a href="#">Category 1.2.1</a></li>
-									</ul></li>
-								<li><a href="#">Category 1.3</a>
-									<ul>
-										<li><a href="#">Category 1.3.1</a></li>
-									</ul></li>
-								<li><a href="#">Category 1.4</a></li>
-							</ul></li>
-						<li><a href="#">Category 2</a></li>
-						<li><a href="#">Category 3</a></li>
-						<li><a href="#">Category 4</a></li>
-					</ul></li>
-				<li><a href="#">Manage</a></li>
-			</ul></li>
-
+		<c:if test = "${not empty userrole }">
+		<li><a href="#">Operations</a>
+		<ul>
+		<!-- admin, ppadmin, marketadmin,consumer, farmer -->
+			<c:if test = "${userrole eq 'consumer' || userrole eq 'admin'}">
+	        	 <li><a href="consumerOrders" onclick="#">Orders</a></li>
+	      	</c:if>
+	      	<c:if test = "${userrole eq 'farmer' || userrole eq 'admin'}">
+	        	 <li><a href="farmerOperations" onclick="#">Orders</a></li>
+	      	</c:if>
+	      	<c:if test = "${userrole eq 'ppadmin' || userrole eq 'admin'}">
+	        	 <li><a href="ppadminOperations" onclick="#">Orders</a></li>
+	      	</c:if>
+	      	<c:if test = "${userrole eq 'marketadmin' || userrole eq 'admin'}">
+	        	 <li><a href="marketadminOperations" onclick="#">Orders</a></li>
+	      	</c:if>
+	      	<c:if test = "${userrole eq 'admin'}">
+	        	 <li><a href="adminOperations" onclick="#">Orders</a></li>
+	      	</c:if>
+		</ul>
+		</li>
+		</c:if>
+		
 		<li><a href="#">${userName} Profile</a>
 			<ul>
 				<c:choose>
 
 					<c:when test="${empty userName}">
 						<li><a href="loginForm" onclick="#">Login</a></li>
-						<li><a href="#" onclick="showRegistrationDiv()">Register</a></li>
+						<li><a href="registrationForm" onclick="#">Register</a></li>
 					</c:when>
 
 					<c:otherwise>
 						<li><a href="logout">Logout</a></li>
-						<li><a href="#">Edit Profile</a></li>
-						<li><a href="#">My Posts</a></li>
+						<li><a href="editprofile?username=${userName}">Edit Profile</a></li>
 					</c:otherwise>
 				</c:choose>
 			</ul></li>
 		<li><a href="#">Help</a></li>
+		<li><a href="#">About Us</a></li>
+		<li><a href="#">Contact Us</a></li>
 	</ul>
 	
 	<br/> 

@@ -63,4 +63,25 @@ public class LoginController {
     	logger.info("validateUser result "+result.toString());
     	return result.isEmpty()?"Valid":"Invalid";
     }
+    
+    @RequestMapping(value="register", method = RequestMethod.POST)
+    public ModelAndView registerUser(HttpServletRequest request) {
+    	ModelAndView mv = new ModelAndView("user/newUserRegistrationResult");
+    	String result = "Failed";
+    			
+    	try {
+    		if(!loginService.getUserValidated(request).isEmpty()) {
+    			mv.addObject("message","Failed: User Already Exists");
+    			return mv;
+    		}
+    	 result = loginService.registerUser(request);
+    	}catch(SQLException e) {
+    		logger.debug("New User Creation Failed :"+ e);
+    		e.printStackTrace();
+    	}
+    	mv.addObject("message",result);
+    	
+		return mv;
+    }
+    
 }

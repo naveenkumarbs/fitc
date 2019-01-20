@@ -4,9 +4,10 @@
     <html>
     <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Guru Success Page</title>
+    <title>FITC</title>
     </head>
+     <jsp:include page="../common/menu.jsp" />
     <body>
-               <a><b>Welcome User!!!!</b></a>
+               <a><b> New User Registration ${message}</b></a>
     </body>
     </html>

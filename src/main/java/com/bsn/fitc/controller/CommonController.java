@@ -26,4 +26,42 @@ public class CommonController {
     	ModelAndView mv = new ModelAndView("login/loginform");
     	return mv;
     }
+	
+	//registrationForm
+	@RequestMapping("registrationForm")
+    public ModelAndView registration(SessionStatus status,HttpSession session) {
+    	ModelAndView mv = new ModelAndView("user/newUser");
+    	return mv;
+    }
+	
+	//Operations
+	@RequestMapping("consumerOrders")
+    public ModelAndView consumerOrders(SessionStatus status,HttpSession session) {
+    	ModelAndView mv = new ModelAndView("operations/consumerOrders");
+    	return mv;
+    }
+	
+	@RequestMapping("adminOperations")
+    public ModelAndView adminOperations(SessionStatus status,HttpSession session) {
+    	ModelAndView mv = new ModelAndView("operations/adminOperations");
+    	return mv;
+    }
+	
+	@RequestMapping("farmerOperations")
+    public ModelAndView farmerOperations(SessionStatus status,HttpSession session) {
+    	ModelAndView mv = new ModelAndView("operations/farmerOperations");
+    	return mv;
+    }
+	
+	@RequestMapping("marketadminOperations")
+    public ModelAndView marketadminOperations(SessionStatus status,HttpSession session) {
+    	ModelAndView mv = new ModelAndView("operations/marketadminOperations");
+    	return mv;
+    }
+	
+	@RequestMapping("ppadminOperations")
+    public ModelAndView ppadminOperations(SessionStatus status,HttpSession session) {
+    	ModelAndView mv = new ModelAndView("operations/ppadminOperations");
+    	return mv;
+    }
 }

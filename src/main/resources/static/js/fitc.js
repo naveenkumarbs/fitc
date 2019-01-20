@@ -5,9 +5,9 @@ $(document).ready(function(){
 
 function validateUser(){
 	
-	var userName = $('#userName').val();
-	console.log("Validating User"+userName)
-	var param = {userName: userName};
+	var username = $('#userName').val();
+	console.log("Validating User"+username)
+	var param = {username: username};
 	console.log(param);
 	 
 	$.ajax({
@@ -20,6 +20,33 @@ function validateUser(){
 	  failure: function(result) {
 		  console.log("Invalid User");
 		  return false;
+	  }
+	});
+	
+}
+
+function updateProfileDetails(){
+
+	var firstname = $('#firstname').val();
+	var lastname = $('#lastname').val();
+	var email = $('#email').val();
+	var phone = $('#phone').val();
+	var address = $('#address').val();
+	var userId = $('#userId').val();
+	console.log("Updating User"+firstname)
+	var param = {firstname: firstname, lastname:lastname, email:email, phone:phone, address:address, userId:userId};
+	console.log(param);
+	 
+	$.ajax({
+	  url: 'updateProfileDetails',
+	   data: param, 
+	  success: function(result) {
+		  console.log("Profile Update Success");
+		  $("#updateStatus").html("Success");
+	  },
+	  failure: function(result) {
+		  console.log("Profile Update Failure");
+		  $("#updateStatus").html("Failure");
 	  }
 	});
 	

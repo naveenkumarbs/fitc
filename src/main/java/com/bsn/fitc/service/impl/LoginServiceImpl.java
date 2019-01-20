@@ -39,7 +39,11 @@ public class LoginServiceImpl implements LoginService{
 
 	@Override
 	public List<String> getUserValidated(HttpServletRequest request) {
-		return loginDao.getUserValidated(request.getParameter("userName"));
+		return loginDao.getUserValidated(request.getParameter("username"));
+	}
+
+	public String registerUser(HttpServletRequest request) throws SQLException {
+		return loginDao.registerUser(request);
 	}
 
 }

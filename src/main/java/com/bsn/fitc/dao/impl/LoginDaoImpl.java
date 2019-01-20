@@ -6,14 +6,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
-import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
+
 
 @Configuration
 @Repository
@@ -21,6 +24,8 @@ public class LoginDaoImpl {
 
 	@Autowired
 	public JdbcTemplate jdbcTemplate;
+	
+	private static final Logger logger = LogManager.getLogger(LoginDaoImpl.class);
 
 	public List<String> getPersons() {
 		return jdbcTemplate.query("select * from Persons", new RowMapper() {
@@ -92,5 +97,45 @@ public class LoginDaoImpl {
 		});
 		
 		return result.get(0);
+	}
+
+	public String registerUser(HttpServletRequest request) throws SQLException {
+		String SQL = "insert into users (firstname, lastname, username,email,phone,address) values"
+				+ "(?,?,?,?,?,?)";
+		
+		List<String> params = new ArrayList<>();
+		params.add(request.getParameter("firstname"));
+		params.add(request.getParameter("lastname"));
+		params.add(request.getParameter("username"));
+		params.add(request.getParameter("email"));
+		params.add(request.getParameter("phone"));
+		params.add(request.getParameter("address"));
+		
+		logger.debug("SQL:"+SQL);
+		logger.debug("params:"+params);
+		jdbcTemplate.update(SQL,params.get(0),
+				params.get(1),
+				params.get(2),
+				params.get(3),
+				params.get(4),
+				params.get(5)
+				);
+		
+		//insert into users_roles_map
+		String SQL1 = "insert into users_roles_map (userid,roleid) values ((select id from users where username=?),(select id from userroles where name=?))";
+		List<String> params1 = new ArrayList<>();
+		params1.add(request.getParameter("username"));
+		params1.add(request.getParameter("role"));
+		
+		jdbcTemplate.update(SQL1,params1.get(0),params1.get(1));
+		
+		String SQL2 = "insert into userlogin (userid,password) values ((select id from users where username=?),?)";
+		List<String> params2 = new ArrayList<>();
+		params2.add(request.getParameter("username"));
+		params2.add(request.getParameter("password"));
+		
+		jdbcTemplate.update(SQL2,params2.get(0),params2.get(1));
+		
+		return "Success";
 	}
 }
