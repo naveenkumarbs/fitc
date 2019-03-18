@@ -16,18 +16,19 @@
 		<!-- admin, ppadmin, marketadmin,consumer, farmer -->
 			<c:if test = "${userrole eq 'consumer' || userrole eq 'admin'}">
 	        	 <li><a href="consumerOrders" onclick="#">Orders</a></li>
+	        	 <li><a href="newOrder" onclick="#">New Orders</a></li>
 	      	</c:if>
 	      	<c:if test = "${userrole eq 'farmer' || userrole eq 'admin'}">
-	        	 <li><a href="farmerOperations" onclick="#">Orders</a></li>
+	        	 <li><a href="farmerOperations" onclick="#">Farmer</a></li>
 	      	</c:if>
 	      	<c:if test = "${userrole eq 'ppadmin' || userrole eq 'admin'}">
-	        	 <li><a href="ppadminOperations" onclick="#">Orders</a></li>
+	        	 <li><a href="ppadminOperations" onclick="#">Pickup Point Admin</a></li>
 	      	</c:if>
 	      	<c:if test = "${userrole eq 'marketadmin' || userrole eq 'admin'}">
-	        	 <li><a href="marketadminOperations" onclick="#">Orders</a></li>
+	        	 <li><a href="marketadminOperations" onclick="#">Market Admin</a></li>
 	      	</c:if>
 	      	<c:if test = "${userrole eq 'admin'}">
-	        	 <li><a href="adminOperations" onclick="#">Orders</a></li>
+	        	 <li><a href="adminOperations" onclick="#">Admin</a></li>
 	      	</c:if>
 		</ul>
 		</li>

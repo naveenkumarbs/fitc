@@ -41,6 +41,12 @@ public class CommonController {
     	return mv;
     }
 	
+	@RequestMapping("newOrders")
+    public ModelAndView newOrders(SessionStatus status,HttpSession session) {
+    	ModelAndView mv = new ModelAndView("operations/newOrders");
+    	return mv;
+    }
+	
 	@RequestMapping("adminOperations")
     public ModelAndView adminOperations(SessionStatus status,HttpSession session) {
     	ModelAndView mv = new ModelAndView("operations/adminOperations");

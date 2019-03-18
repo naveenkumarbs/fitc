@@ -1,5 +1,6 @@
 $(document).ready(function(){
 	hideAll();
+	hideAllAdminOpts();
    showPopup();
 });
 
@@ -77,4 +78,31 @@ function hideAll(){
 
 function showPopup(){
 	console.log("Welcome");
+}
+
+function hideAllAdminOpts(){
+	$('#addMarketDiv').hide();
+	$('#removeMarketDiv').hide();
+	$('#addPPDiv').hide();
+	$('#removePPDiv').hide();
+	$('#addMarketAdminDiv').hide();
+	$('#removeMarketAdminDiv').hide();
+	$('#addPPAdminDiv').hide();
+	$('#removePPAdminDiv').hide();
+}
+
+function showAdminDiv(adminOption){
+	hideAllAdminOpts();
+	
+	switch(adminOption){
+	case "addMarketOpt": $('#addMarketDiv').show(); break;
+	case "removeMarketOpt": $('#removeMarketDiv').show(); break;
+	case "addPPOpt":$('#addPPDiv').show(); break;
+	case "removePPOpt": $('#removePPDiv').show(); break;
+	case "addMarketAdminOpt": $('#addMarketAdminDiv').show(); break;
+	case "removeMarketAdminOpt": $('#removeMarketAdminDiv').show(); break;
+	case "addPPAdminOpt": $('#addPPAdminDiv').show(); break;
+	case "removePPAdminOpt": $('#removePPAdminDiv').show(); break;
+	}
+	
 }
